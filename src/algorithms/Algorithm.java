@@ -11,6 +11,9 @@ import flashSim.FlashDisk;
 import flashSim.Memory;
 import flashSim.Stat;
 
+/**
+ *  base algorithm class
+ */
 public  class Algorithm implements Comparable<Algorithm>{
 
 	 public enum traceLine {
@@ -28,6 +31,13 @@ public  class Algorithm implements Comparable<Algorithm>{
 	public Stat stat;
 	public static int maxLines;
 	
+	/**
+	*   base constructor
+	 *
+	 * @fdisks array of FlashDisk objects
+	 * @co is cooperative? ( 1 = yes )
+	 * @prop algorithm properties
+	 */
 	public Algorithm(ArrayList<FlashDisk> fdisks,Integer co, Properties prop) {
 
 		super();
@@ -42,6 +52,12 @@ public  class Algorithm implements Comparable<Algorithm>{
 	public ArrayList<FlashDisk> getFdisks() {
 		return fdisks;
 	}
+		/**
+	*   run for single line = memory
+	 *
+	 * @paramsp exploded line
+	 * @i line index
+	 */
 	public  int run(String[] paramsp,int i){
 		
 		params = paramsp;
@@ -146,11 +162,17 @@ public  class Algorithm implements Comparable<Algorithm>{
 		//fdisks.get(i).WriteO(address, mem);
 	}
 
+		/**
+	*   canditate object for ALRU,ALRUALL  classes
+	 */
 	public class Canditate{
 		
 		ArrayList<Memory> mems = new ArrayList<Memory>();
 		public int size=0, epoch=0,time=0,host=0,count=0;
 	}
+	/**
+	*   fill canditate object that fit to sizeB in disk
+	 */
 	public  void fillCanByStatDisk(int disk, int sizeB,Canditate can ){
 		
 		List<Memory> memoryListStat = 
@@ -174,6 +196,9 @@ public  class Algorithm implements Comparable<Algorithm>{
 	      
 	}
 
+		/**
+	*   update totals for stat printing later
+	 */
 	public void updateTotals(){
 		
 		total_cache_hit = 0;

@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+/**
+*   simulise simple flash disk  
+ */
 public class FlashDisk implements Disk{
 	
 	//memoryListO = memory list in other hosts
@@ -32,8 +35,13 @@ public class FlashDisk implements Disk{
 	 private BitSet sizesB=new BitSet(61);
 	 private ArrayList<HashMap<Integer, Memory>> memBysizeB = new ArrayList<HashMap<Integer, Memory>>(61);
 	 
-	// memSize will come in mib and blockSize in kb  ,
-	//we convert them to byte;mib= 2^20, kib=2^10
+	/**
+	*   base constructor
+	 *
+	 * @memSize memSize  in mib
+	 * @blocksize blockSize in kib
+	 * @host host index
+	 */
 	public FlashDisk(Double memSize, int blocksize, int host) {
 		
 		super();
@@ -102,7 +110,10 @@ public class FlashDisk implements Disk{
 	 public boolean isAvailableB(int sizeB) {
 		return (availableB>=sizeB);
 	}
-	 //get the smallest size of memory that >- size. 60 = atleast 60 blocks
+		/**
+	*   get the smallest size of memory that >- size. 60 = atleast 60 blocks
+	 */
+	 
 	 public int getSmallestSizeB(int minBlocks, boolean toDelete) {
 		 
 		 int index = -1;
@@ -127,23 +138,12 @@ public class FlashDisk implements Disk{
 		return index;
 		
 	}
-	/*public void shiftAllStatRight() {
 
-	      Set<Map.Entry<Integer,Memory>> set = memoryList.entrySet();
-	      Iterator<Map.Entry<Integer,Memory>> i = set.iterator();
-	      
-	      while(i.hasNext()) {
-	    	  
-	          Map.Entry<Integer,Memory> me = (Map.Entry<Integer,Memory>)i.next();
-	          Memory val = (Memory) me.getValue();
-				if(val.getType()==1){
-					val.setStat((short) (val.getStat() >> 1));
-				}
-		}
-	}*/
 	 
-
-	//invariant - address not exsit - use read to check before
+		/**
+	*   invariant - address not exsit - use read to check before
+	 */
+	 
 	public Memory write(Integer address, long size, int stat, int stat2){
 
 	    Memory mem=null;
@@ -190,7 +190,10 @@ public class FlashDisk implements Disk{
 		return mem;
 		
 	}
-	//add written memory from other host
+			/**
+	*   add written memory from other host
+	 */
+	
 	public Memory WriteO(int address, Memory mem ){
 	
 		if(mem!=null)
@@ -199,7 +202,10 @@ public class FlashDisk implements Disk{
 		
 		return mem;
 	}
-	//if memory exsit in another host it will only be deleted from this  host addreses
+				/**
+	*   if memory exsit in another host it will only be deleted from this  host addreses
+	 */
+	
 	public Memory free(int address, Memory mem){
 		if(mem != null){
 
@@ -208,13 +214,6 @@ public class FlashDisk implements Disk{
 					this.availableB=this.availableB+sizeB;
 					this.memoryList.remove(address);
 					
-					//remove from memory stat
-					/*for(int i=0;i<memoryListStat.size();i++){
-						if(memoryListStat.get(i).getAddress()==mem.getAddress()){
-							memoryListStat.remove(i);
-							break;
-						}
-					}*/
 					for(FlashDisk fdisk:fdisks){
 						if(fdisk.getHost()!=host)
 							fdisk.freeO(mem);
@@ -254,13 +253,7 @@ public class FlashDisk implements Disk{
 					this.availableB=this.availableB+sizeB;
 					this.memoryList.remove(meme.getKey());
 					
-					//remove from memory stat
-					/*for(int i=0;i<memoryListStat.size();i++){
-						if(memoryListStat.get(i).getAddress()==mem.getAddress()){
-							memoryListStat.remove(i);
-							break;
-						}
-					}*/
+
 					for(FlashDisk fdisk:fdisks){
 						if(fdisk.getHost()!=host)
 							fdisk.freeO(mem);

@@ -9,6 +9,9 @@ import java.util.Set;
 import flashSim.FlashDisk;
 import flashSim.Memory;
 
+/**
+ * ordered memories, random deletion class
+ */
 public class ARandomOrdered extends Algorithm{
 
 	public ARandomOrdered(ArrayList<FlashDisk> fdisks, Integer co,Properties prop) {

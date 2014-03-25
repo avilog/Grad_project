@@ -9,6 +9,9 @@ import java.util.Set;
 import flashSim.FlashDisk;
 import flashSim.Memory;
 
+/**
+ *  random deletion class
+ */
 public class ARandom extends Algorithm{
 
 	public ARandom(ArrayList<FlashDisk> fdisks, Integer co, Properties prop) {

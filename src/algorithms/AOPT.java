@@ -5,6 +5,9 @@ import java.util.Properties;
 
 import flashSim.FlashDisk;
 
+/**
+ *  optimum class - endless memory
+ */
 public class AOPT extends Algorithm {
 
 	public AOPT(ArrayList<FlashDisk> fdisks, Integer co, Properties prop) {

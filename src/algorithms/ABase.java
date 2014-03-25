@@ -5,7 +5,11 @@ import java.util.Properties;
 
 import flashSim.FlashDisk;
 
-	public class ABase extends Algorithm{
+	/**
+	*   dema class - dont do anything
+	 */
+	 
+public class ABase extends Algorithm{
 		
 	public ABase(ArrayList<FlashDisk> fdisks, Integer co, Properties prop) {
 			

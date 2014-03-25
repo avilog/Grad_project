@@ -5,6 +5,9 @@ import java.util.Properties;
 import flashSim.FlashDisk;
 import flashSim.Memory;
 
+/**
+ *  ALLU on all hosts class ( the "flagship" algorithm class )
+ */
 public class ALRUALL extends Algorithm{
 
 	int epoch = 0;//virtual times synced

@@ -5,6 +5,9 @@ import java.util.Properties;
 import flashSim.FlashDisk;
 import flashSim.Memory;
 
+/**
+ *  ALLU only on current host class
+ */
 public class ALRU extends Algorithm {
 		
 	public ALRU(ArrayList<FlashDisk> fdisks, Integer co, Properties prop) {
